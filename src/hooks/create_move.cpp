@@ -54,8 +54,10 @@ namespace hooks
 
 		engine_prediction::finish(cmd);
 
+#ifndef _DEBUG
 		if (cmd->buttons & IN_SCORE)
 			hooks::dispatch_user_message::hook.CallOriginal(std::forward<IBaseClientDLL*>(interfaces::base_client), 50, 0, 0, nullptr); // 50 = CS_UM_ServerRankRevealAll
+#endif
 
 		if (!(cmd->buttons & IN_BULLRUSH))
 			cmd->buttons |= IN_BULLRUSH;
